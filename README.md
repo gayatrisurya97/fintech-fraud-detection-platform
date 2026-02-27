@@ -146,7 +146,7 @@ so the dashboard always reflects the latest pipeline output.
 
 
 
-## About
+## Author
 
 **Gayathri Kanchi**
 MSc Data Science — Nottingham Trent University (2025)

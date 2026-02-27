@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: stg_transactions
+    description: "Cleaned and standardised transaction data from raw PaySim dataset"
+    columns:
+      - name: sender_id
+        description: "Unique identifier for the sender"
+        tests:
+          - not_null
+
+      - name: amount
+        description: "Transaction amount in local currency"
+        tests:
+          - not_null
+
+      - name: transaction_type
+        description: "Type of transaction"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['TRANSFER', 'CASH_OUT', 'PAYMENT', 'CASH_IN', 'DEBIT']
+
+      - name: is_fraud
+        description: "1 if fraudulent transaction, 0 if legitimate"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
+
+  - name: int_transaction_features
+    description: "Engineered features for ML model and reporting"
+    columns:
+      - name: sender_id
+        tests:
+          - not_null
+      - name: amount
+        tests:
+          - not_null
+
+  - name: mart_transactions
+    description: "Final reporting table for Power BI dashboard"
+    columns:
+      - name: sender_id
+        tests:
+          - not_null
+      - name: amount
+        tests:
+          - not_null
